@@ -1,0 +1,278 @@
+{
+  "data": {
+    "search": {
+      "edges": [
+        {
+          "node": {
+            "name": "freeCodeCamp",
+            "description": "freeCodeCamp.org's open source codebase and curriculum. Learn to code for free.",
+            "url": "https://github.com/freeCodeCamp/freeCodeCamp",
+            "stargazers": {
+              "totalCount": 319551
+            },
+            "owner": {
+              "login": "freeCodeCamp",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/9892522?v=4",
+              "url": "https://github.com/freeCodeCamp"
+            },
+            "updatedAt": "2021-02-12T13:26:29Z",
+            "licenseInfo": {
+              "name": "BSD 3-Clause \"New\" or \"Revised\" License"
+            },
+            "forkCount": 25378,
+            "homepageUrl": "https://contribute.freecodecamp.org",
+            "languages": {
+              "nodes": [
+                {
+                  "name": "JavaScript",
+                  "color": "#f1e05a"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "node": {
+            "name": "996.ICU",
+            "description": "Repo for counting stars and contributing. Press F to pay respect to glorious developers.",
+            "url": "https://github.com/996icu/996.ICU",
+            "stargazers": {
+              "totalCount": 255283
+            },
+            "owner": {
+              "login": "996icu",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/48942249?u=e23a2b9c40e2f896c0e3132cbec92900ed91a0d5&v=4",
+              "url": "https://github.com/996icu"
+            },
+            "updatedAt": "2021-02-12T13:04:16Z",
+            "licenseInfo": {
+              "name": "Other"
+            },
+            "forkCount": 21247,
+            "homepageUrl": "https://996.icu",
+            "languages": {
+              "nodes": [
+                {
+                  "name": "Makefile",
+                  "color": "#427819"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "node": {
+            "name": "vue",
+            "description": "🖖 Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.",
+            "url": "https://github.com/vuejs/vue",
+            "stargazers": {
+              "totalCount": 179336
+            },
+            "owner": {
+              "login": "vuejs",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/6128107?v=4",
+              "url": "https://github.com/vuejs"
+            },
+            "updatedAt": "2021-02-12T13:14:58Z",
+            "licenseInfo": {
+              "name": "MIT License"
+            },
+            "forkCount": 28102,
+            "homepageUrl": "http://vuejs.org",
+            "languages": {
+              "nodes": [
+                {
+                  "name": "JavaScript",
+                  "color": "#f1e05a"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "node": {
+            "name": "free-programming-books",
+            "description": ":books: Freely available programming books",
+            "url": "https://github.com/EbookFoundation/free-programming-books",
+            "stargazers": {
+              "totalCount": 175529
+            },
+            "owner": {
+              "login": "EbookFoundation",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/14127308?v=4",
+              "url": "https://github.com/EbookFoundation"
+            },
+            "updatedAt": "2021-02-12T13:28:44Z",
+            "licenseInfo": {
+              "name": "Other"
+            },
+            "forkCount": 40490,
+            "homepageUrl": "https://ebookfoundation.github.io/free-programming-books/",
+            "languages": {
+              "nodes": []
+            }
+          }
+        },
+        {
+          "node": {
+            "name": "react",
+            "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+            "url": "https://github.com/facebook/react",
+            "stargazers": {
+              "totalCount": 163573
+            },
+            "owner": {
+              "login": "facebook",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/69631?v=4",
+              "url": "https://github.com/facebook"
+            },
+            "updatedAt": "2021-02-12T12:31:05Z",
+            "licenseInfo": {
+              "name": "MIT License"
+            },
+            "forkCount": 32735,
+            "homepageUrl": "https://reactjs.org",
+            "languages": {
+              "nodes": [
+                {
+                  "name": "JavaScript",
+                  "color": "#f1e05a"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "node": {
+            "name": "coding-interview-university",
+            "description": "A complete computer science study plan to become a software engineer.",
+            "url": "https://github.com/jwasham/coding-interview-university",
+            "stargazers": {
+              "totalCount": 155088
+            },
+            "owner": {
+              "login": "jwasham",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/3771963?u=4b348c742192b1963aabbf803a1174d2a4de155a&v=4",
+              "url": "https://github.com/jwasham"
+            },
+            "updatedAt": "2021-02-12T12:54:35Z",
+            "licenseInfo": {
+              "name": "Creative Commons Attribution Share Alike 4.0 International"
+            },
+            "forkCount": 43443,
+            "homepageUrl": "",
+            "languages": {
+              "nodes": []
+            }
+          }
+        },
+        {
+          "node": {
+            "name": "tensorflow",
+            "description": "An Open Source Machine Learning Framework for Everyone",
+            "url": "https://github.com/tensorflow/tensorflow",
+            "stargazers": {
+              "totalCount": 153191
+            },
+            "owner": {
+              "login": "tensorflow",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/15658638?v=4",
+              "url": "https://github.com/tensorflow"
+            },
+            "updatedAt": "2021-02-12T13:24:59Z",
+            "licenseInfo": {
+              "name": "Apache License 2.0"
+            },
+            "forkCount": 83978,
+            "homepageUrl": "https://tensorflow.org",
+            "languages": {
+              "nodes": [
+                {
+                  "name": "Python",
+                  "color": "#3572A5"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "node": {
+            "name": "awesome",
+            "description": "😎 Awesome lists about all kinds of interesting topics",
+            "url": "https://github.com/sindresorhus/awesome",
+            "stargazers": {
+              "totalCount": 152146
+            },
+            "owner": {
+              "login": "sindresorhus",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/170270?u=34acd557a042ac478d273a4621570cadb6b0bd89&v=4",
+              "url": "https://github.com/sindresorhus"
+            },
+            "updatedAt": "2021-02-12T13:12:21Z",
+            "licenseInfo": {
+              "name": "Creative Commons Zero v1.0 Universal"
+            },
+            "forkCount": 19890,
+            "homepageUrl": "",
+            "languages": {
+              "nodes": []
+            }
+          }
+        },
+        {
+          "node": {
+            "name": "bootstrap",
+            "description": "The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web.",
+            "url": "https://github.com/twbs/bootstrap",
+            "stargazers": {
+              "totalCount": 148170
+            },
+            "owner": {
+              "login": "twbs",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/2918581?v=4",
+              "url": "https://github.com/twbs"
+            },
+            "updatedAt": "2021-02-12T13:11:15Z",
+            "licenseInfo": {
+              "name": "MIT License"
+            },
+            "forkCount": 72218,
+            "homepageUrl": "https://getbootstrap.com",
+            "languages": {
+              "nodes": [
+                {
+                  "name": "JavaScript",
+                  "color": "#f1e05a"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "node": {
+            "name": "developer-roadmap",
+            "description": "Roadmap to becoming a web developer in 2021",
+            "url": "https://github.com/kamranahmedse/developer-roadmap",
+            "stargazers": {
+              "totalCount": 147960
+            },
+            "owner": {
+              "login": "kamranahmedse",
+              "avatarUrl": "https://avatars.githubusercontent.com/u/4921183?u=3d4f9096d432eaa2be9a9e637ac5ebb04c52c18c&v=4",
+              "url": "https://github.com/kamranahmedse"
+            },
+            "updatedAt": "2021-02-12T13:24:09Z",
+            "licenseInfo": {
+              "name": "Other"
+            },
+            "forkCount": 21759,
+            "homepageUrl": "https://roadmap.sh",
+            "languages": {
+              "nodes": []
+            }
+          }
+        }
+      ]
+    }
+  }
+}
