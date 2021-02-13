@@ -29,13 +29,15 @@ Alternatively, you can run locally
   then
   `cd top-github-stars`
 
+3. Run `firebase init` in the project's root directory and follow the prompts to enable `firestore` support.
 
-3. In the root directory of the app, create a `.env` file to hold your github access token and other sensitive data.
+
+4. In the root directory of the app, create a `.env` file to hold your github access token and the configuration for firestore.
   ```
   REACT_APP_GITHUB_KEY = <your-github-key>
   ```
 
-4. Install dependencies with `yarn install`
+5. Install dependencies with `yarn install`
 
 ## Available Scripts
 
@@ -57,5 +59,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 # Technologies
 - React
 - Materia-UI
+- Firebase
 - Netlify
 

@@ -16,8 +16,9 @@ const useStyles = makeStyles({
   }
 });
 
-const RepositoryList = () => {
+const BookmarksList = () => {
   const classes = useStyles();
+  const [loading, setLoading] = React.useState(false);
   const {data, loading, error} = useQuery(FIND_REPOS);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const RepositoryList = () => {
 
   return (
     <div>
-      {data.search.edges.map((repo, i) => (
+      {bookmarks.map((repo, i) => (
         <Repository
           repo={repo}
           position={i+1}
@@ -58,4 +59,4 @@ const RepositoryList = () => {
   );
 };
 
-export default RepositoryList;
+export default BookmarksList;

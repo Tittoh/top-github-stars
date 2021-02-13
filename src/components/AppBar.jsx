@@ -8,6 +8,8 @@ import { Container } from '@material-ui/core';
 import { Bookmarks } from '@material-ui/icons';
 import BookmarksModal from './Bookmarks';
 
+import db from '../utils/firebase'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -18,30 +20,51 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  spinnerContainer: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    marginTop: '1rem'
+  }
 }));
 
 export default function ButtonAppBar() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [bookmarks, setBookmarks] = React.useState({});
+  const [loading, setLoading] = React.useState(false);
+  const [bookmarks, setBookmarks] = React.useState([]);
+  const [error, setError] = React.useState("");
   const handleOpen = () => {
-    getBookmarks();
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleDelete = (keyName) => {
-    localStorage.removeItem(keyName)
+  const handleDelete = (name) => {
+    db.collection("bookmarks").doc(name).delete().then(() => {
+      console.log("Document successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
     getBookmarks()
   }
 
   const getBookmarks = () =>{
-    setBookmarks(Object.keys(localStorage).reduce(function(obj, str) {
-      obj[str] = localStorage.getItem(str); 
-      return obj
-      }, {}));
+    let data = []
+    setLoading(true)
+    db.collection("bookmarks").get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          data.push(doc.data())
+          setLoading(false)
+        });
+        setBookmarks(data)
+    })
+    .catch((error) => {
+      setLoading(false)
+      setError(error)
+    });
   }
 
   return (
@@ -56,7 +79,7 @@ export default function ButtonAppBar() {
             variant="outlined"
             color="inherit"
             size="small"
-            onClick={handleOpen}
+            onClick={() =>{getBookmarks(); handleOpen();}}
             open={open}
             startIcon={<Bookmarks />}
           >
@@ -66,7 +89,9 @@ export default function ButtonAppBar() {
         </Container>
       </AppBar>
       <BookmarksModal
-      bookmarks={bookmarks} 
+      bookmarks={bookmarks}
+      loading={loading}
+      error={error}
       open={open}
       handleDelete={handleDelete}
       onClose={handleClose}/>

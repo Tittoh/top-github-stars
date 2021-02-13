@@ -7,13 +7,16 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import StarOutlineRoundedIcon from '@material-ui/icons/StarOutlineRounded';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
-import { Chip } from '@material-ui/core';
+import Chip from '@material-ui/core/Chip';
 
 import nFormatter from '../utils/nFormatter'
+import db from '../utils/firebase'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,18 +59,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 export default function Repository({repo, position}) {
   const {node: {name, description, owner, updatedAt,
     stargazers: {totalCount}, forkCount, url, languages:{nodes},}} = repo;
   const language = nodes[0] ? { name:nodes[0].name, color:nodes[0].color } : {name: "", color: "transparent"}
-  
+  const user = owner.login
+
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const [bookmark, setBookmark] = React.useState({name, url});
+  const [bookmark, setBookmark] = React.useState({user, name, url});
+  const [toast, setToast] = React.useState({open:false, message:"", severity:""});
 
-  const handleBookmark = (name, url) => {
-    setBookmark({name, url})
-    localStorage.setItem(bookmark.name, bookmark.url);
+  const showToast = ({open, message, severity}) => {
+    setToast({open, message, severity});
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setToast(toast.open=false);
+  };
+
+  // Add bookmarks to firestore
+  const handleBookmark = (user, name, url) => {
+    setBookmark({user, name, url})
+    // The set() method to avoid duplicate documents
+    db.collection("bookmarks").doc(name).set(bookmark)
+    .then((docRef) => {
+      let message = `${name} bookmark added`
+      showToast({open:true, message:message, severity:"success"})
+    })
+    .catch((error) => {
+      let message = error
+      showToast({open:true, message:message, severity:"success"})
+    });
   };
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -79,6 +109,7 @@ export default function Repository({repo, position}) {
       verticalAlign: "bottom"
     },
   }
+
   return (
       <Accordion expanded={expanded === position} onChange={handleChange(position)}>
         <AccordionSummary
@@ -102,7 +133,7 @@ export default function Repository({repo, position}) {
         <AccordionDetails>
           <Grid container direction="row">
             <Grid itemxs={6} sm={8}>
-              <Typography>Owner:<a  className={classes.owner} href={owner.url}> {owner.login}</a></Typography>
+              <Typography>Owner:<a  className={classes.owner} href={owner.url}> {user}</a></Typography>
               <Typography className={classes.updated}>{`Updated: ${Date(updatedAt).split("G")[0]}`}</Typography>
             </Grid>
             <Grid item sm={12} className={classes.description}>
@@ -113,7 +144,7 @@ export default function Repository({repo, position}) {
                 variant="outlined"
                 color="primary"
                 size="small"
-                onClick={() =>{handleBookmark(name, url)}}
+                onClick={() =>{handleBookmark(user, name, url)}}
                 className={classes.button}
                 startIcon={<BookmarkIcon />}
               >
@@ -134,6 +165,11 @@ export default function Repository({repo, position}) {
             </Grid>
           </Grid>
         </AccordionDetails>
+        <Snackbar open={toast.open} autoHideDuration={4000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity={toast.severity}>
+            {toast.message}
+          </Alert>
+      </Snackbar>
       </Accordion>
   );
 }
