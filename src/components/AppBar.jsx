@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { Container } from '@material-ui/core';
 import { Bookmarks } from '@material-ui/icons';
+import BookmarksModal from './Bookmarks';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +22,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [bookmarks, setBookmarks] = React.useState({});
+  const handleOpen = () => {
+    getBookmarks();
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleDelete = (keyName) => {
+    localStorage.removeItem(keyName)
+    getBookmarks()
+  }
+
+  const getBookmarks = () =>{
+    setBookmarks(Object.keys(localStorage).reduce(function(obj, str) {
+      obj[str] = localStorage.getItem(str); 
+      return obj
+      }, {}));
+  }
 
   return (
     <div className={classes.root}>
@@ -34,6 +56,8 @@ export default function ButtonAppBar() {
             variant="outlined"
             color="inherit"
             size="small"
+            onClick={handleOpen}
+            open={open}
             startIcon={<Bookmarks />}
           >
             Bookmarks
@@ -41,6 +65,11 @@ export default function ButtonAppBar() {
         </Toolbar>
         </Container>
       </AppBar>
+      <BookmarksModal
+      bookmarks={bookmarks} 
+      open={open}
+      handleDelete={handleDelete}
+      onClose={handleClose}/>
     </div>
   );
 }

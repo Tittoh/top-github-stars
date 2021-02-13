@@ -6,12 +6,12 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import StarOutlineRoundedIcon from '@material-ui/icons/StarOutlineRounded';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import { Chip } from '@material-ui/core';
-
 
 import nFormatter from '../utils/nFormatter'
 
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   description: {
     fontSize: theme.typography.pxToRem(16),
     marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(3),
     color: theme.palette.text.primary,
   },
   updated: {
@@ -57,15 +57,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Repository({repo, position}) {
+  const {node: {name, description, owner, updatedAt,
+    stargazers: {totalCount}, forkCount, url, languages:{nodes},}} = repo;
+  const language = nodes[0] ? { name:nodes[0].name, color:nodes[0].color } : {name: "", color: "transparent"}
+  
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [bookmark, setBookmark] = React.useState({name, url});
+
+  const handleBookmark = (name, url) => {
+    setBookmark({name, url})
+    localStorage.setItem(bookmark.name, bookmark.url);
+  };
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
-  const {node: {name, description, owner, updatedAt,
-    stargazers: {totalCount}, forkCount, url, languages:{nodes},}} = repo;
-  const language = nodes[0] ? { name:nodes[0].name, color:nodes[0].color } : {name: "", color: "transparent"}
   const styles = {
     dotStyle: {
       color: language.color,
@@ -91,6 +98,7 @@ export default function Repository({repo, position}) {
               label={nFormatter(totalCount)}/>
           </Grid>
         </AccordionSummary>
+        <Divider variant="middle" />
         <AccordionDetails>
           <Grid container direction="row">
             <Grid itemxs={6} sm={8}>
@@ -105,6 +113,7 @@ export default function Repository({repo, position}) {
                 variant="outlined"
                 color="primary"
                 size="small"
+                onClick={() =>{handleBookmark(name, url)}}
                 className={classes.button}
                 startIcon={<BookmarkIcon />}
               >

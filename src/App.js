@@ -33,7 +33,7 @@ function App() {
         <RepositoryList />
       </Container>
     </ApolloProvider>
-  );
+    );
 }
 
 export default App;
